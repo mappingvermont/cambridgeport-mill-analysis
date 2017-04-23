@@ -24,7 +24,8 @@ function buildLeafletMap() {
             'http://mapping-vt-tiles.s3.amazonaws.com/cambridgeport-1869/{z}/{x}/{y}.png', {
             maxZoom: 20,
             opacity: 0.7,
-            pane: 'cambridgeport'
+            pane: 'cambridgeport',
+            attribution: '<a href="http://Old-Maps.com" target="_blank">Old-Maps.com</a>',
             }).addTo(map)
 
     map.createPane('vcgi');
@@ -42,7 +43,7 @@ function buildLeafletMap() {
     var vcgi_lidar = L.esri.imageMapLayer({
       //url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARDEM_SP_NOCACHE_v1/ImageServer',
       url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARHILLSHD_WM_CACHE_v1/ImageServer',
-      attribution: 'VCGI',
+      attribution: '<a href="http://vcgi.vermont.gov/" target="_blank">VCGI</a>',
       pane: 'vcgi',
       opacity: 0.7
     }).addTo(map)
