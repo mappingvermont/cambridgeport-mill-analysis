@@ -1,7 +1,9 @@
 function buildLeafletMap() {
 
-    var map = L.map('map');
-    var hash = new L.Hash(map);
+    var map = L.map('map', {
+        center: new L.LatLng(43.152, -72.559),
+        zoom: 16
+    });
 
     var HERE_satelliteDay = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/satellite.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
         attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com" target="_blank">HERE</a>',
@@ -30,6 +32,17 @@ function buildLeafletMap() {
     map.createPane('vcgi');
     map.getPane('vcgi').style.zIndex = 450;
 
+    var vcgi_lidar = L.esri.imageMapLayer({
+        //url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARDEM_SP_NOCACHE_v1/ImageServer',
+        url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARHILLSHD_WM_CACHE_v1/ImageServer',
+        attribution: '<a href="http://vcgi.vermont.gov/" target="_blank">VCGI</a>',
+        pane: 'vcgi',
+        opacity: 0.7
+    }).addTo(map)
+
+    var hash = new L.Hash(map);
+
+    /* Set DRA if we want to use actually elevation data instead of hillshade
     var rasterFuncProperties = {
         "rasterFunction": "Stretch",
         "rasterFunctionArguments": {
@@ -39,21 +52,8 @@ function buildLeafletMap() {
         "variableName": "Raster",
         "outputPixelType": "float"
     }
-
-    var vcgi_lidar = L.esri.imageMapLayer({
-        //url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARDEM_SP_NOCACHE_v1/ImageServer',
-        url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARHILLSHD_WM_CACHE_v1/ImageServer',
-        attribution: '<a href="http://vcgi.vermont.gov/" target="_blank">VCGI</a>',
-        pane: 'vcgi',
-        opacity: 0.7
-    }).addTo(map)
-
-    //vcgi_lidar.setRenderingRule(rasterFuncProperties)
-
-    map.setView({
-        lat: 43.152,
-        lng: -72.559
-    }, 16);
+    vcgi_lidar.setRenderingRule(rasterFuncProperties)
+    */
 
     $(function() {
         $("#slider").slider({
