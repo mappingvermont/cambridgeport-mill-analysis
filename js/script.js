@@ -1,4 +1,3 @@
-
 function buildLeafletMap() {
 
     var map = L.map('map');
@@ -20,37 +19,41 @@ function buildLeafletMap() {
     map.createPane('cambridgeport');
     map.getPane('cambridgeport').style.zIndex = 650;
 
-    var cambridgeport = new  L.tileLayer(
-            'http://mapping-vt-tiles.s3.amazonaws.com/cambridgeport-1869/{z}/{x}/{y}.png', {
+    var cambridgeport = new L.tileLayer(
+        'http://mapping-vt-tiles.s3.amazonaws.com/cambridgeport-1869/{z}/{x}/{y}.png', {
             maxZoom: 20,
             opacity: 0.7,
             pane: 'cambridgeport',
             attribution: '<a href="http://Old-Maps.com" target="_blank">Old-Maps.com</a>',
-            }).addTo(map)
+        }).addTo(map)
 
     map.createPane('vcgi');
     map.getPane('vcgi').style.zIndex = 450;
 
     var rasterFuncProperties = {
-  "rasterFunction" : "Stretch",
-  "rasterFunctionArguments" : {
-    "StretchType" : 5,
-    "DRA": true},
-  "variableName" : "Raster",
-  "outputPixelType":"float"
-}
+        "rasterFunction": "Stretch",
+        "rasterFunctionArguments": {
+            "StretchType": 5,
+            "DRA": true
+        },
+        "variableName": "Raster",
+        "outputPixelType": "float"
+    }
 
     var vcgi_lidar = L.esri.imageMapLayer({
-      //url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARDEM_SP_NOCACHE_v1/ImageServer',
-      url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARHILLSHD_WM_CACHE_v1/ImageServer',
-      attribution: '<a href="http://vcgi.vermont.gov/" target="_blank">VCGI</a>',
-      pane: 'vcgi',
-      opacity: 0.7
+        //url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARDEM_SP_NOCACHE_v1/ImageServer',
+        url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARHILLSHD_WM_CACHE_v1/ImageServer',
+        attribution: '<a href="http://vcgi.vermont.gov/" target="_blank">VCGI</a>',
+        pane: 'vcgi',
+        opacity: 0.7
     }).addTo(map)
 
     //vcgi_lidar.setRenderingRule(rasterFuncProperties)
- 
-    map.setView({ lat: 43.151379588550036, lng: -72.55956888198853 }, 16);
+
+    map.setView({
+        lat: 43.152,
+        lng: -72.559
+    }, 16);
 
     $(function() {
         $("#slider").slider({
