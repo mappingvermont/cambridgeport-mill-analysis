@@ -5,8 +5,8 @@ function buildLeafletMap() {
         zoom: 16
     });
 
-    var HERE_satelliteDay = L.tileLayer('http://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/satellite.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
-        attribution: 'Map &copy; 1987-2014 <a href="http://developer.here.com" target="_blank">HERE</a>',
+    var HERE_satelliteDay = L.tileLayer('https://{s}.{base}.maps.cit.api.here.com/maptile/2.1/maptile/{mapID}/satellite.day/{z}/{x}/{y}/256/png8?app_id={app_id}&app_code={app_code}', {
+        attribution: 'Map &copy; 1987-2014 <a href="https://developer.here.com" target="_blank">HERE</a>',
         subdomains: '1234',
         mapID: 'newest',
         app_id: '0pJkGAtXILXbrXNdW6Dm',
@@ -22,20 +22,19 @@ function buildLeafletMap() {
     map.getPane('cambridgeport').style.zIndex = 650;
 
     var cambridgeport = new L.tileLayer(
-        'http://mapping-vt-tiles.s3.amazonaws.com/cambridgeport-1869/{z}/{x}/{y}.png', {
+        'https://mapping-vt-tiles.s3.amazonaws.com/cambridgeport-1869/{z}/{x}/{y}.png', {
             maxZoom: 20,
             opacity: 0.7,
             pane: 'cambridgeport',
-            attribution: '<a href="http://Old-Maps.com" target="_blank">Old-Maps.com</a>',
+            attribution: '<a href="https://Old-Maps.com" target="_blank">Old-Maps.com</a>',
         }).addTo(map)
 
     map.createPane('vcgi');
     map.getPane('vcgi').style.zIndex = 450;
 
     var vcgi_lidar = L.esri.imageMapLayer({
-        //url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARDEM_SP_NOCACHE_v1/ImageServer',
-        url: 'http://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARHILLSHD_WM_CACHE_v1/ImageServer',
-        attribution: '<a href="http://vcgi.vermont.gov/" target="_blank">VCGI</a>',
+        url: 'https://maps.vcgi.vermont.gov/arcgis/rest/services/EGC_services/IMG_VCGI_LIDARHILLSHD_WM_CACHE_v1/ImageServer',
+        attribution: '<a href="https://vcgi.vermont.gov/" target="_blank">VCGI</a>',
         pane: 'vcgi',
         opacity: 0.7
     }).addTo(map)
